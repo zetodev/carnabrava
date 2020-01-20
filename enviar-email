@@ -1,0 +1,53 @@
+<?php
+
+if(!$_POST) exit;
+
+$email = $_POST['demo-email'];
+
+$errors=0;
+
+
+// Valida o email
+//$error[] = preg_match('/\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i', $_POST['email']) ? '' : 'INVALID EMAIL ADDRESS';
+if(!preg_match("/^[a-z0-9]+([_\\.-][a-z0-9]+)" ."@"."([a-z0-9]+([\.-][a-z0-9]+))+"."\\.[a-z]{2,}"."$/i",$email )){
+    $error.="Email Inválido!";
+    $errors=1;
+}
+
+
+if($errors==1) echo $error;
+else{
+
+    // Recebe e guarda os valores em um array
+    $values = array ('demo-name','demo-email','demo-category','demo-message');
+    $required = array('demo-name','demo-email','demo-category','demo-message');
+   
+    // Conteudo do email
+    $your_email = "contato@carnabrava.com.br"; 
+    $email_subject = "[SITE] Email do Site: ".$_POST['demo-category'];
+    $email_content = "Mensagem: \n";
+    $email_servidor = "contato@carnabrava.com.br";
+    
+    $headers = "From: ".$email_servidor."\n" .
+               "Reply-To: ".$your_email."\n" .
+               "X-Mailer: PHP/" . phpversion() . "\n";
+    $headers .= "MIME-Version: 1.0\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\n";
+  
+    foreach($values as $key => $value){
+      if(in_array($value,$required)){
+        if ($key != 'demo-name' && $key != 'company') {
+          if( empty($_POST[$value]) ) { echo "<script>alert('Preencha os campos obrigatórios.');</script>"; exit; }
+        }
+        $email_content .= $value.': '.$_POST[$value]."\n";
+      }
+    }
+   
+    if(mail($your_email,$email_subject,nl2br($email_content), $headers)) {
+        echo "<script> alert('Obrigado, seu email foi enviado com sucesso, em breve entraremos em contato.');</script>";
+    } else {
+        echo "<script> alert('ERROR!');</script>";
+    
+    }
+}
+?>
