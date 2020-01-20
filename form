@@ -1,0 +1,39 @@
+<!-- FALE CONOSCO -->
+					<section id="cta" class="wrapper style4">
+						<div class="inner">
+								<section>
+									<div id="fale">
+										<img src="images/fale-conosco.webp" width="50%" alt="fale-conosco"/>
+									</div>
+										<form method="POST" action="enviar-email.php">
+											<div class="row uniform">
+												<div class="6u 12u$(xsmall)">
+													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Nome" />
+												</div>
+												<div class="6u$ 12u$(xsmall)">
+													<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+												</div>
+												<div class="12u$">
+													<div class="select-wrapper">
+														<select name="demo-category" id="demo-category">
+															<option value="">Assunto</option>
+															<option value="ingresso">Ingressos</option>
+															<option value="local">Local</option>
+															<option value="atracoes">Atrações</option>
+															<option value="outros">Outros...</option>
+														</select>
+													</div>
+												</div>
+												<div class="12u$">
+													<textarea name="demo-message" id="demo-message" placeholder="Escreva sua mensagem aqui" rows="6"></textarea>
+												</div>
+												<div class="12u$">
+													<ul class="actions">
+														<li><input type="submit" value="Enviar" class="special" /></li>
+													</ul>
+												</div>
+											</div>
+										</form>
+									</section>
+						</div>
+					</section>				
